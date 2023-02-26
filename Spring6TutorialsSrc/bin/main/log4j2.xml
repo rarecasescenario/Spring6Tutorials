@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" monitorinterval="30">
+	<Properties>
+		<Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] - %5p %m - (%C:%L)%n</Property>
+		<Property name="NDC_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %X{MODULE}=>%X{SYMBOL}: - %5p %m - (%C:%L)%n</Property>
+		<Property name="LOG_DIR">C:/tmp/logs</Property>
+		<Property name="LOG_FILE_NAME">spring6tutorial</Property>
+		
+		
+	</Properties>
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%X{MODULE}=>%X{SYMBOL}: [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %t %c{1} - %msg%n" />
+		</Console>
+
+		<RollingFile name="DAILY_LOG" fileName="${LOG_DIR}/${LOG_FILE_NAME}.log"
+			filePattern="${LOG_DIR}/${LOG_FILE_NAME}-%d{yyyy-MM-dd}.log">
+			<DefaultRolloverStrategy max="285" />
+			<PatternLayout>
+				<pattern>${NDC_PATTERN}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"	modulate="true" />
+			</Policies>
+		</RollingFile>
+
+
+	</Appenders>
+	<Loggers>
+		<Logger name="org.tutorials" additivity="false" level="info">
+			<AppenderRef ref="DAILY_LOG" />
+			<AppenderRef ref="Console" />
+		</Logger>
+	
+		<Root level="debug" additivity="false">
+			<AppenderRef ref="DAILY_LOG" />
+		</Root>
+	</Loggers>
+</Configuration>
