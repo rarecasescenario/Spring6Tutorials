@@ -28,7 +28,7 @@
 
 	</Appenders>
 	<Loggers>
-		<Logger name="org.tutorials" additivity="false" level="info">
+		<Logger name="com.iwm" level="info">
 			<AppenderRef ref="DAILY_LOG" />
 			<AppenderRef ref="Console" />
 		</Logger>
