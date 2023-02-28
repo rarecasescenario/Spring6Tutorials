@@ -23,7 +23,7 @@ public class YahooPrices {
 	public static void main(String[] args) {
 
 		log.info("Yahoo Yield Started...");
-		String symbol = "ENB.TO";
+		String symbol = "IGM.TO";
 		String startDate = "2021-01-03";
 		String endDate = "2023-02-28";
 		
